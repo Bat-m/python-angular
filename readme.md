@@ -24,7 +24,7 @@ launch python init_db.py
 
 
 if table well created then create a trigger in pgsql to valide status
-CREATE FUNCTION check_all_column_filled_for_status() RETURNS trigger AS $check_all_column_filled_for_status$
+```CREATE FUNCTION check_all_column_filled_for_status() RETURNS trigger AS $check_all_column_filled_for_status$
     BEGIN
         -- Check that all column is not null and change status if ok
         IF (NEW.label IS NOT NULL and NEW.description IS NOT NULL and NEW.name_intervener IS NOT NULL and NEW.location IS NOT NULL and NEW.date IS NOT NULL and NEW.status='VALID') THEN
@@ -37,7 +37,7 @@ $check_all_column_filled_for_status$ LANGUAGE plpgsql;
 
 CREATE TRIGGER check_all_column_filled_for_status BEFORE INSERT OR UPDATE ON interventions
     FOR EACH ROW EXECUTE FUNCTION check_all_column_filled_for_status();
-
+```
 Pour mettre à jour le status une fois la date passé j'envisage un cron chaque heure (ou chaque jour a voir) avec le fichier check_date.py
 
 @hourly C:\Python27 C:\Users\user\Documents\nautilux\check_date
