@@ -1,0 +1,128 @@
+<div class="container-fluid" >
+  <div class="px-4 sm:px-6 lg:px-8">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h1 class="text-xl font-semibold text-gray-900">Interventions</h1>
+        <p class="mt-2 text-sm text-gray-700">Une liste des interventions</p>
+      </div>
+      <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+        <button ng-click="$ctrl.open()" type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Ajout intervention</button>
+      </div>
+    </div>
+    <div class="mt-8 flex flex-col">
+      <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+          <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Libellé</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Nom intervenant</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Lieu</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Date de l'intervention</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Edit</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Delete</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200 bg-white">
+                <tr ng-repeat="intervention in $ctrl.interventions | filter:$ctrl.query | orderBy:$ctrl.orderProp">
+                  <td  class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{intervention[1]}}</td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{intervention[3]}}</td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{intervention[4]}}</td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{intervention[2]}}</td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{intervention[5]}}</td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{intervention[6]}}</td>
+                  <td ng-if='intervention[6] !== "FINISHED"' class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                    <div ng-click="$ctrl.openEdit(intervention[0])" class="text-indigo-600 hover:text-indigo-900">Editer</div>
+                  </td>
+                  <td  class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm text-red-200 font-medium sm:pr-6">
+                    <div ng-click="delete(intervention[0])" class="text-indigo-600 hover:text-indigo-900">Supprimer</div>
+                  </td>
+                </tr>
+  
+             
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-if='$ctrl.isOpen || $ctrl.isOpenUpdate' class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+   
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+  
+    <div class="fixed inset-0 z-10 overflow-y-auto">
+      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+       
+        <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+          <div class="mt-5 md:col-span-2 md:mt-0">
+            <form novalidate >
+              <div class="overflow-hidden shadow sm:rounded-md">
+                <div class="bg-white px-4 py-5 sm:p-6">
+                  <div class="grid grid-cols-6 gap-6">
+                    <div class="col-span-6">
+                      <label for="label" class="block text-sm font-medium text-gray-700">Libellé </label>
+                      <div class="text-xs italic" ng-if='$ctrl.isOpenUpdate'>
+                        Valeur actuel: {{$ctrl.intervention[1]}}
+                      </div>
+                      <input placeholder="Veuillez saisir un libellé" placeholder="Veuillez saisir un libellé"  type="text" ng-model="intervention.label"  name="label" id="label"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    </div>
+      
+                    <div class="col-span-6">
+                      <label for="name_intervener" class="block text-sm font-medium text-gray-700">Nom intervenant</label>
+                      <div class="text-xs italic" ng-if='$ctrl.isOpenUpdate'>
+                        Valeur actuel: {{$ctrl.intervention[3]}}
+                      </div>
+                      <input placeholder="Veuillez saisir un nom"  type="text" ng-model="intervention.name_intervener" name="name_intervener" id="name_intervener"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    </div>
+      
+                    <div class="col-span-6">
+                      <label for="location" class="block text-sm font-medium text-gray-700">Lieu</label>
+                      <div class="text-xs italic" ng-if='$ctrl.isOpenUpdate'>
+                        Valeur actuel: {{$ctrl.intervention[]}}
+                      </div>
+                      <input placeholder="Veuillez saisir un lieu d'intervention"  type="text" ng-model="intervention.location" name="location" id="location" autocomplete="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    </div>
+      
+                    <div class="col-span-6">
+                      <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                      <div class="text-xs italic" ng-if='$ctrl.isOpenUpdate'>
+                        Valeur actuel: {{$ctrl.intervention[2]}}
+                      </div>
+                      <input placeholder="Veuillez saisir une description"  type="text-area" ng-model="intervention.description" name="description" id="description"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                     
+                    </div>
+      
+                    <div class="col-span-6">
+                      <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
+                      <div ng-if='$ctrl.isOpenUpdate'>
+                        Valeur actuel: {{$ctrl.intervention[5]}}
+                      </div>
+                      <input placeholder="Veuillez saisir une date"  type="date" ng-model="intervention.date" name="date" id="date"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    </div>
+      
+                  </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                  <div ng-if='$ctrl.isOpen'>
+                    <button  ng-click="$ctrl.open()" type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Annuler</button>
+                    <button  ng-click="create(intervention)" type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Créer intervention</button>
+                  </div>
+                 <div ng-if='$ctrl.isOpenUpdate' >
+                  <button  ng-click="$ctrl.openUpdate()" type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Annuler</button>
+                  <button ng-click="update(intervention,$ctrl.intervention[0])" type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Modifier intervention</button>
+
+                 </div>
+                </div>
+              </div>
+            </form>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

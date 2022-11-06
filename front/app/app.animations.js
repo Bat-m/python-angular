@@ -1,8 +1,8 @@
 'use strict';
 
 angular.
-  module('phonecatApp').
-  animation('.phone', function phoneAnimationFactory() {
+  module('interventionAPP').
+  animation('.intervention-list', function interventionAnimationFactory() {
     return {
       addClass: animateIn,
       removeClass: animateOut

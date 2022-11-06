@@ -1,10 +1,8 @@
 'use strict';
 
-// Define the `phonecatApp` module
-angular.module('phonecatApp', [
+// Define the `interventionAPP` module
+angular.module('interventionAPP', [
   'ngAnimate',
   'ngRoute',
-  'core',
-  'phoneDetail',
-  'phoneList'
+  'interventionList'
 ]);
