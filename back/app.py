@@ -9,11 +9,11 @@ CORS(app)
 
 def get_db_connection():
     conn = psycopg2.connect(
-            host='localhost',
-            dbname='nautilux',
-            user='postgres',
-            password='silence',
-            port=5432
+            host=os.getenv('HOSTNAME'),
+            dbname=os.getenv('DATABASE'),
+            user=os.getenv('USERNAME'),
+            password=os.getenv('PWD'),
+            port=os.getenv('PORT_ID')
         ) 
     return conn
 
