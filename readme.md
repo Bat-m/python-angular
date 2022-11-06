@@ -42,3 +42,7 @@ CREATE TRIGGER check_all_column_filled_for_status BEFORE INSERT OR UPDATE ON int
 Pour mettre à jour le status une fois la date passé j'envisage un cron chaque heure (ou chaque jour a voir) avec le fichier check_date.py
 
 @hourly C:\Python27 C:\Users\user\Documents\nautilux\check_date
+
+une fois que tout est préparé pour une premiere
+lancée init_db.py
+puis lancé npm start depuis le dossrier front et accéder au tableau de bord pour ajouter , editer, supprimer
