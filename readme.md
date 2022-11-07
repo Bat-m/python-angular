@@ -16,7 +16,7 @@ install uuid extension pgsql
 - CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 
-- create a .env file with the right param 
+
 - create a user in your database if fail auth
 ex: ALTER USER user WITH PASSWORD 'pwd1234';
 
@@ -44,5 +44,6 @@ Pour mettre à jour le status une fois la date passé j'envisage un cron chaque 
 
 @hourly C:\Python27 C:\Users\user\Documents\nautilux\check_date
 
-launch app.py from ./back
-launch npm start from ./front 
+- create a .env file with the right param (or write direct param if auth problems)
+- launch app.py from ./back
+- launch npm start from ./front 
