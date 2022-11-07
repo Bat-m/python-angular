@@ -16,8 +16,8 @@ install uuid extension pgsql
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 
-create a .env file with the right param
-create a user in your database if fail auth
+- create a .env file with the right param 
+- create a user in your database if fail auth
 ex: ALTER USER user WITH PASSWORD 'pwd1234';
 
 
