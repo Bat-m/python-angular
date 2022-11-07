@@ -9,27 +9,37 @@ CORS(app)
 
 def get_db_connection():
     conn = psycopg2.connect(
-            host=os.getenv('HOSTNAME'),
-            dbname=os.getenv('DATABASE'),
-            user=os.getenv('USERNAME'),
-            password=os.getenv('PWD'),
-            port=os.getenv('PORT_ID')
+            host='localhost',
+            dbname='nautilux',
+            user='postgres',
+            password='silence',
+            port=5432
         ) 
     return conn
 
 ######## HOME ############
 @app.route('/')
 def hello():
-    return render_template('index.html', utc_dt=datetime.datetime.utcnow())
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute('''
+SELECT * FROM interventions ORDER BY date  {}
+'''.format("ASC"))
+   
+    interventions = cur.fetchall()
+
+    print(interventions)
+    return jsonify(interventions)
 
 
 ######## Example fetch ############
 
-@app.route('/test', methods=['GET', 'POST'])
+@app.route('/getall', methods=['GET', 'POST'])
 def testfn():
+    orderBy = request.args.get('orderBy') if request.args.get('orderBy') else "DESC"
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute('SELECT * FROM interventions;')
+    cur.execute('''SELECT * FROM interventions ORDER BY date  {}'''.format(orderBy))
     interventions = cur.fetchall()
     print(interventions)
     cur.close()
