@@ -46,4 +46,4 @@ Pour mettre à jour le status une fois la date passé j'envisage un cron chaque 
 
 
 - launch app.py from ./back
-- launch npm start from ./front 
+- launch npm i then npm start from ./front 
