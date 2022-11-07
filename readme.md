@@ -3,7 +3,7 @@ install pgsql (15 in my case)
 
 when python is installed
 - pip install psycopg2 (for connect to db)
-- pip install load_dotenv (for .env)
+- pip install load_dotenv (for .env) (si pbm d'auth ecrire en dur lors de la co db)
 - pip install flask
 - pip instal flask_cors
 
@@ -44,5 +44,5 @@ Pour mettre à jour le status une fois la date passé j'envisage un cron chaque 
 
 @hourly C:\Python27 C:\Users\user\Documents\nautilux\check_date
 
-
+launch app.py from ./back
 launch npm start from ./front 
