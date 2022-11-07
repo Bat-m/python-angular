@@ -43,7 +43,5 @@ Pour mettre à jour le status une fois la date passé j'envisage un cron chaque 
 
 @hourly C:\Python27 C:\Users\user\Documents\nautilux\check_date
 
-une fois que tout est préparé pour une premiere
-créer un .env avec les bonnes valeur db (sinon mettre en dur si souci de connection)
-lancée init_db.py
-puis lancé npm start depuis le dossrier front et accéder au tableau de bord pour ajouter , editer, supprimer
+
+launch npm start from ./front 
