@@ -20,8 +20,8 @@ install uuid extension pgsql
 - create a user in your database if fail auth
 ex: ALTER USER user WITH PASSWORD 'pwd1234';
 
-
-launch python init_db.py 
+- create a .env file with the right param (or write direct param if auth problems)
+- launch python init_db.py 
 
 
 if table well created then create a trigger in pgsql to valide status
@@ -44,6 +44,6 @@ Pour mettre à jour le status une fois la date passé j'envisage un cron chaque 
 
 @hourly C:\Python27 C:\Users\user\Documents\nautilux\check_date
 
-- create a .env file with the right param (or write direct param if auth problems)
+
 - launch app.py from ./back
 - launch npm start from ./front 
