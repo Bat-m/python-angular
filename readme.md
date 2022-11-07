@@ -1,4 +1,4 @@
-install python 2.7
+install python 2.7 
 install pgsql (15 in my case)
 
 when python is installed
