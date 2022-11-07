@@ -2,10 +2,10 @@ install python 2.7
 install pgsql (15 in my case)
 
 when python is installed
-pip install psycopg2 (for connect to db)
-pip install load_dotenv (for .env)
-pip install flask
-pip instal flask_cors
+- pip install psycopg2 (for connect to db)
+- pip install load_dotenv (for .env)
+- pip install flask
+- pip instal flask_cors
 
 si probleme de droit bdd
 
