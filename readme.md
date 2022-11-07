@@ -9,11 +9,11 @@ when python is installed
 
 si probleme de droit bdd
 
-GRANT ALL PRIVILEGES ON SCHEMA public TO user;
-GRANT ALL PRIVILEGES ON DATABASE nautilux TO user;
+- GRANT ALL PRIVILEGES ON SCHEMA public TO user;
+- GRANT ALL PRIVILEGES ON DATABASE nautilux TO user;
 
 install uuid extension pgsql
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+- CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 
 - create a .env file with the right param 
