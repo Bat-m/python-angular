@@ -1,5 +1,5 @@
-install python 2.7 
-install pgsql (15 in my case)
+- install python 2.7 
+- install pgsql (15 in my case)
 
 when python is installed
 - pip install psycopg2 (for connect to db)
